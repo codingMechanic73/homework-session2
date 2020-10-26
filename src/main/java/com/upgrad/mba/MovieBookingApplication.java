@@ -10,8 +10,7 @@ import javax.sql.DataSource;
 public class MovieBookingApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(MovieBookingApplication.class, args);
-		DataSource ds = ctx.getBean(DataSource.class);
+		SpringApplication.run(MovieBookingApplication.class, args);
 	}
 
 }
