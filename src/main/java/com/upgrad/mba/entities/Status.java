@@ -10,7 +10,7 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int statusId;
 
-    @Column(length = 20,nullable = false, unique = true)
+    @Column(length = 20, nullable = false, unique = true)
     private String statusName;
 
     public int getStatusId() {

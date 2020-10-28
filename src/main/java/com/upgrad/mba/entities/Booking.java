@@ -1,12 +1,10 @@
 package com.upgrad.mba.entities;
 
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
+@Entity
 public class Booking {
 
     @Id
@@ -14,9 +12,9 @@ public class Booking {
     private int bookingId;
 
     @Column(nullable = false)
-    private Date bookingDate;
+    private LocalDateTime bookingDate;
 
-    @Column(length = 10, nullable = false)
+    @Column(nullable = false)
     private int noOfSeats;
 
     public int getBookingId() {
@@ -27,11 +25,11 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public Date getBookingDate() {
+    public LocalDateTime getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;
     }
 

@@ -1,7 +1,7 @@
 package com.upgrad.mba.entities;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -9,7 +9,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int customer_id;
+    private int customerId;
 
     @Column(length = 20, nullable = false)
     private String firstName;
@@ -24,14 +24,14 @@ public class Customer {
     private String password;
 
     @Column(nullable = false)
-    private Date dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getFirstName() {
@@ -66,18 +66,18 @@ public class Customer {
         this.password = password;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDateTime getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "customer_id=" + customer_id +
+                "customerId=" + customerId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +

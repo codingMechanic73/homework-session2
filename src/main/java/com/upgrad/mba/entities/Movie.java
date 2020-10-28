@@ -1,7 +1,7 @@
 package com.upgrad.mba.entities;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -18,9 +18,9 @@ public class Movie {
     private String movieDesc;
 
     @Column(nullable = false)
-    private Date releaseDate;
+    private LocalDateTime releaseDate;
 
-    @Column(length = 3, nullable = false)
+    @Column(nullable = false)
     private int duration;
 
     @Column(length = 500, nullable = false)
@@ -53,11 +53,11 @@ public class Movie {
         this.movieDesc = movieDesc;
     }
 
-    public Date getReleaseDate() {
+    public LocalDateTime getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDateTime releaseDate) {
         this.releaseDate = releaseDate;
     }
 

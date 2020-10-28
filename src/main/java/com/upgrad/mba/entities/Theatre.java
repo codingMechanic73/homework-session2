@@ -14,7 +14,7 @@ public class Theatre {
     private String theatreName;
 
     @Column(nullable = false)
-    private double ticketPrice;
+    private float ticketPrice;
 
     public int getTheatreId() {
         return theatreId;
@@ -32,11 +32,11 @@ public class Theatre {
         this.theatreName = theatreName;
     }
 
-    public double getTicketPrice() {
+    public float getTicketPrice() {
         return ticketPrice;
     }
 
-    public void setTicketPrice(double ticketPrice) {
+    public void setTicketPrice(float ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 
