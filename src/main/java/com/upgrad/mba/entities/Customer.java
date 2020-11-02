@@ -2,13 +2,13 @@ package com.upgrad.mba.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
-@Table
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int customerId;
 
     @Column(length = 20, nullable = false)
@@ -25,6 +25,36 @@ public class Customer {
 
     @Column(nullable = false)
     private LocalDateTime dateOfBirth;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Booking> bookings;
+
+    @ElementCollection (fetch = FetchType.EAGER)
+    @CollectionTable(name = "customer_contact_number", joinColumns = @JoinColumn(name = "customer_id"))
+    @Column(name = "mobile_number", nullable = false)
+    private Set<Integer> phoneNumbers;
+
+    @ManyToOne
+    @JoinColumn(name = "user_type_id", nullable = false)
+    private UserType userType;
+
+    @ManyToOne
+    @JoinColumn(name = "language_id", nullable = false)
+    private Language language;
+
+    public Customer() {
+    }
+
+    public Customer(int customerId, String firstName, String lastName, String username, String password, LocalDateTime dateOfBirth, UserType userType, Language language) {
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.userType = userType;
+        this.language = language;
+    }
 
     public int getCustomerId() {
         return customerId;
@@ -74,6 +104,38 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public Set<Integer> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(Set<Integer> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -83,6 +145,9 @@ public class Customer {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
+                ", phoneNumbers=" + phoneNumbers +
+                ", userType=" + userType +
+                ", language=" + language +
                 '}';
     }
 }

@@ -1,16 +1,28 @@
 package com.upgrad.mba.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int cityId;
 
     @Column(length = 20, nullable = false)
     private String cityName;
+
+    @OneToMany(mappedBy = "city", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Theatre> theatres;
+
+    public City() {
+    }
+
+    public City(int cityId, String cityName) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+    }
 
     public int getCityId() {
         return cityId;
@@ -26,6 +38,14 @@ public class City {
 
     public void setCityName(String cityName) {
         this.cityName = cityName;
+    }
+
+    public Set<Theatre> getTheatres() {
+        return theatres;
+    }
+
+    public void setTheatres(Set<Theatre> theatres) {
+        this.theatres = theatres;
     }
 
     @Override

@@ -4,11 +4,10 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int movieId;
 
     @Column(length = 50, nullable = false, unique = true)
@@ -28,6 +27,24 @@ public class Movie {
 
     @Column(length = 500, nullable = false)
     private String trailerUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id", nullable = false)
+    private Status status;
+
+    public Movie() {
+    }
+
+    public Movie(int movieId, String movieName, String movieDesc, LocalDateTime releaseDate, int duration, String coverPhotoUrl, String trailerUrl, Status status) {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.movieDesc = movieDesc;
+        this.releaseDate = releaseDate;
+        this.duration = duration;
+        this.coverPhotoUrl = coverPhotoUrl;
+        this.trailerUrl = trailerUrl;
+        this.status = status;
+    }
 
     public int getMovieId() {
         return movieId;
@@ -85,6 +102,14 @@ public class Movie {
         this.trailerUrl = trailerUrl;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -95,6 +120,7 @@ public class Movie {
                 ", duration=" + duration +
                 ", coverPhotoUrl='" + coverPhotoUrl + '\'' +
                 ", trailerUrl='" + trailerUrl + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

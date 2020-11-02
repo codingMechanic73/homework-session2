@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int bookingId;
 
     @Column(nullable = false)
@@ -16,6 +16,25 @@ public class Booking {
 
     @Column(nullable = false)
     private int noOfSeats;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_theatre_id", nullable = false)
+    private MovieTheatre movieTheatre;
+
+    public Booking() {
+    }
+
+    public Booking(int bookingId, LocalDateTime bookingDate, int noOfSeats, Customer customer, MovieTheatre movieTheatre) {
+        this.bookingId = bookingId;
+        this.bookingDate = bookingDate;
+        this.noOfSeats = noOfSeats;
+        this.customer = customer;
+        this.movieTheatre = movieTheatre;
+    }
 
     public int getBookingId() {
         return bookingId;
@@ -41,12 +60,30 @@ public class Booking {
         this.noOfSeats = noOfSeats;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public MovieTheatre getMovieTheatre() {
+        return movieTheatre;
+    }
+
+    public void setMovieTheatre(MovieTheatre movieTheatre) {
+        this.movieTheatre = movieTheatre;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
                 "bookingId=" + bookingId +
                 ", bookingDate=" + bookingDate +
                 ", noOfSeats=" + noOfSeats +
+                ", customer=" + customer +
+                ", movieTheatre=" + movieTheatre +
                 '}';
     }
 }

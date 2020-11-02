@@ -6,11 +6,20 @@ import javax.persistence.*;
 public class Language {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int languageId;
 
     @Column(length = 20, nullable = false, unique = true)
     private String languageName;
+
+
+    public Language() {
+    }
+
+    public Language(int languageId, String languageName) {
+        this.languageId = languageId;
+        this.languageName = languageName;
+    }
 
     public int getLanguageId() {
         return languageId;

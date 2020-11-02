@@ -3,15 +3,22 @@ package com.upgrad.mba.entities;
 import javax.persistence.*;
 
 @Entity
-@Table
 public class Status {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int statusId;
 
     @Column(length = 20, nullable = false, unique = true)
     private String statusName;
+
+    public Status() {
+    }
+
+    public Status(int statusId, String statusName) {
+        this.statusId = statusId;
+        this.statusName = statusName;
+    }
 
     public int getStatusId() {
         return statusId;
